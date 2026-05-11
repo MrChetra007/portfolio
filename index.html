@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Developer Portfolio | Full-Stack & Mobile Engineer</title>
+<meta name="description" content="Full-stack and mobile developer building production-ready web and mobile applications. Vue.js, Flutter, Laravel, Supabase specialist."/>
+<meta property="og:title" content="Developer Portfolio | Full-Stack & Mobile Engineer"/>
+<meta property="og:description" content="Building real products for real problems. Vue.js, Flutter, Laravel, Supabase."/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#070809;
+  --bg2:#0d0f11;
+  --bg3:#121518;
+  --glass:rgba(255,255,255,0.04);
+  --glass-border:rgba(255,255,255,0.08);
+  --cyan:#22d3ee;
+  --cyan2:#06b6d4;
+  --violet:#a78bfa;
+  --violet2:#7c3aed;
+  --text:#e2e8f0;
+  --text-muted:#94a3b8;
+  --text-dim:#475569;
+  --radius:14px;
+  --radius-sm:8px;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Outfit',sans-serif;
+  font-size:16px;
+  line-height:1.7;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--cyan),var(--violet));border-radius:2px}
+
+/* CURSOR */
+#cursor{
+  position:fixed;width:12px;height:12px;
+  background:var(--cyan);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform .1s,width .2s,height .2s,background .2s;
+  mix-blend-mode:screen;
+}
+#cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border:1px solid rgba(34,211,238,.4);border-radius:50%;
+  pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:transform .18s ease,width .2s,height .2s;
+}
+body:hover #cursor{opacity:1}
+
+/* SCROLL PROGRESS */
+#progress{
+  position:fixed;top:0;left:0;height:2px;width:0%;
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  z-index:1000;transition:width .1s;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  padding:1.1rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .3s,backdrop-filter .3s,border-bottom .3s;
+}
+nav.scrolled{
+  background:rgba(7,8,9,.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--glass-border);
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  text-decoration:none;letter-spacing:-.02em;
+}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  color:var(--text-muted);text-decoration:none;font-size:.9rem;font-weight:500;
+  letter-spacing:.02em;transition:color .2s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;
+  background:var(--cyan);transition:width .25s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-right{display:flex;gap:1rem;align-items:center}
+.nav-btn{
+  padding:.5rem 1.25rem;border:1px solid var(--glass-border);
+  background:var(--glass);color:var(--text);text-decoration:none;
+  border-radius:99px;font-size:.85rem;font-weight:500;
+  transition:all .2s;backdrop-filter:blur(8px);
+}
+.nav-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+#hamburger{display:none;background:none;border:none;cursor:none;color:var(--text);font-size:1.4rem}
+
+/* MOBILE NAV */
+#mobile-menu{
+  display:none;position:fixed;inset:0;z-index:850;
+  background:rgba(7,8,9,.97);backdrop-filter:blur(20px);
+  flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+}
+#mobile-menu.open{display:flex}
+#mobile-menu a{
+  font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;
+  color:var(--text-muted);text-decoration:none;transition:color .2s;
+}
+#mobile-menu a:hover{color:var(--cyan)}
+#close-menu{position:absolute;top:1.5rem;right:2rem;background:none;border:none;cursor:none;color:var(--text-muted);font-size:1.6rem}
+
+/* GRID BG */
+.grid-bg{
+  position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+  background-image:
+    linear-gradient(rgba(34,211,238,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(34,211,238,.08) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+
+/* BLOBS */
+.blob{
+  position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px);
+  animation:blobMove 10s ease-in-out infinite alternate;
+}
+@keyframes blobMove{0%{transform:translate(0,0)}100%{transform:translate(30px,20px)}}
+
+/* SECTIONS */
+section{position:relative;z-index:1}
+
+/* HERO */
+#hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:8rem 2rem 4rem;overflow:hidden;
+}
+.hero-inner{max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:2}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.4rem 1.1rem;border:1px solid rgba(34,211,238,.3);
+  border-radius:99px;font-size:.8rem;font-weight:500;letter-spacing:.06em;
+  color:var(--cyan);background:rgba(34,211,238,.06);
+  margin-bottom:2rem;animation:fadeDown .8s ease both;
+}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{
+  font-family:'Syne',sans-serif;font-size:clamp(2.8rem,7vw,5.2rem);
+  font-weight:800;line-height:1.05;letter-spacing:-.04em;
+  margin-bottom:1.5rem;
+  animation:fadeUp .9s ease both .1s;
+}
+.hero-title .line2{
+  background:linear-gradient(135deg,var(--cyan) 0%,var(--violet) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  font-size:1.1rem;color:var(--text-muted);max-width:600px;margin:0 auto 2.5rem;
+  font-weight:400;line-height:1.75;
+  animation:fadeUp .9s ease both .2s;
+}
+.hero-btns{
+  display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+  margin-bottom:4rem;animation:fadeUp .9s ease both .3s;
+}
+.btn-primary{
+  padding:.85rem 2rem;background:linear-gradient(135deg,var(--cyan2),var(--violet2));
+  color:#fff;border:none;border-radius:99px;font-size:1rem;font-weight:600;
+  cursor:none;text-decoration:none;transition:all .25s;position:relative;overflow:hidden;
+  font-family:'Outfit',sans-serif;
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--violet2),var(--cyan2));
+  opacity:0;transition:opacity .3s;
+}
+.btn-primary:hover::before{opacity:1}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(34,211,238,.3)}
+.btn-primary span{position:relative}
+.btn-ghost{
+  padding:.85rem 2rem;border:1px solid var(--glass-border);
+  background:var(--glass);color:var(--text);border-radius:99px;
+  font-size:1rem;font-weight:500;cursor:none;text-decoration:none;
+  transition:all .25s;backdrop-filter:blur(8px);font-family:'Outfit',sans-serif;
+}
+.btn-ghost:hover{border-color:var(--violet);color:var(--violet);transform:translateY(-2px)}
+
+/* STATS */
+.hero-stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;
+  max-width:800px;margin:0 auto;animation:fadeUp .9s ease both .4s;
+}
+.stat-card{
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:var(--radius);padding:1.2rem 1.4rem;text-align:left;
+  backdrop-filter:blur(12px);transition:all .3s;position:relative;overflow:hidden;
+}
+.stat-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(34,211,238,.06),rgba(167,139,250,.06));
+  opacity:0;transition:opacity .3s;
+}
+.stat-card:hover::before{opacity:1}
+.stat-card:hover{border-color:rgba(34,211,238,.25);transform:translateY(-3px)}
+.stat-num{
+  font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.stat-label{font-size:.85rem;color:var(--text-muted);margin-top:.2rem;font-weight:400}
+
+/* SECTION LAYOUT */
+.section-inner{max-width:1100px;margin:0 auto;padding:0 2rem}
+.section-header{text-align:center;margin-bottom:4rem}
+.section-tag{
+  display:inline-block;padding:.3rem .9rem;
+  border:1px solid rgba(167,139,250,.3);border-radius:99px;
+  font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--violet);background:rgba(167,139,250,.06);margin-bottom:1rem;
+}
+.section-title{
+  font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);
+  font-weight:800;letter-spacing:-.03em;line-height:1.1;
+}
+.section-sub{
+  font-size:1.05rem;color:var(--text-muted);max-width:560px;
+  margin:.8rem auto 0;line-height:1.7;
+}
+
+/* REVEAL ANIMATION */
+.reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ABOUT */
+#about{padding:7rem 0}
+.about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:center}
+.about-visual{position:relative}
+.about-img{
+  width:100%;aspect-ratio:1;border-radius:20px;
+  background:linear-gradient(135deg,var(--bg3) 0%,rgba(34,211,238,.05) 50%,rgba(167,139,250,.05) 100%);
+  border:1px solid var(--glass-border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:5rem;color:var(--text-dim);position:relative;overflow:hidden;
+}
+.about-img::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 50%,rgba(34,211,238,.08),transparent 70%);
+}
+.about-initials{
+  font-family:'Syne',sans-serif;font-size:4rem;font-weight:800;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;position:relative;z-index:1;
+}
+.about-badge-wrap{display:flex;flex-direction:column;gap:.75rem;margin-top:1.5rem}
+.about-badge{
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:var(--radius-sm);padding:.75rem 1rem;
+  display:flex;align-items:center;gap:.75rem;font-size:.9rem;
+  transition:all .25s;
+}
+.about-badge:hover{border-color:rgba(34,211,238,.25);background:rgba(34,211,238,.04)}
+.about-badge i{color:var(--cyan);width:18px;text-align:center}
+.about-content .section-tag{margin-bottom:1rem}
+.about-content .section-title{text-align:left;margin-bottom:1.2rem;font-size:2.2rem}
+.about-content p{color:var(--text-muted);line-height:1.8;margin-bottom:1rem}
+.about-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.pill{
+  padding:.3rem .9rem;border-radius:99px;font-size:.8rem;font-weight:500;
+  border:1px solid var(--glass-border);color:var(--text-muted);
+  background:var(--glass);transition:all .2s;
+}
+.pill:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* TECH */
+#tech{padding:7rem 0;background:linear-gradient(180deg,transparent,rgba(13,15,17,.8),transparent)}
+.tech-categories{display:flex;flex-direction:column;gap:2.5rem}
+.tech-category-label{
+  font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:1rem;
+}
+.tech-row{display:flex;flex-wrap:wrap;gap:.75rem}
+.tech-badge{
+  display:flex;align-items:center;gap:.5rem;
+  padding:.55rem 1.1rem;border:1px solid var(--glass-border);
+  background:var(--glass);border-radius:var(--radius-sm);
+  font-size:.875rem;font-weight:500;color:var(--text);
+  transition:all .25s;cursor:default;backdrop-filter:blur(8px);
+}
+.tech-badge:hover{
+  border-color:var(--cyan);color:var(--cyan);
+  background:rgba(34,211,238,.06);transform:translateY(-2px);
+  box-shadow:0 4px 20px rgba(34,211,238,.1);
+}
+.tech-badge .dot{width:6px;height:6px;border-radius:50%}
+
+/* PROJECTS */
+#projects{padding:7rem 0}
+.projects-filter{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.filter-btn{
+  padding:.45rem 1.1rem;border:1px solid var(--glass-border);
+  background:var(--glass);color:var(--text-muted);border-radius:99px;
+  font-size:.85rem;font-weight:500;cursor:none;transition:all .2s;
+}
+.filter-btn:hover,.filter-btn.active{
+  border-color:var(--cyan);color:var(--cyan);background:rgba(34,211,238,.06);
+}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+.project-card{
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:var(--radius);overflow:hidden;transition:all .3s;
+  cursor:none;position:relative;display:flex;flex-direction:column;
+}
+.project-card:hover{
+  border-color:rgba(34,211,238,.25);transform:translateY(-6px);
+  box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 0 1px rgba(34,211,238,.1);
+}
+.project-thumb{
+  height:180px;background:linear-gradient(135deg,var(--bg3),rgba(34,211,238,.05),rgba(167,139,250,.05));
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;border-bottom:1px solid var(--glass-border);
+}
+.project-thumb-icon{font-size:3rem;opacity:.4}
+.project-thumb-glow{
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 80%,rgba(34,211,238,.08),transparent 60%);
+}
+.project-body{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+.project-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem}
+.project-type{font-size:.75rem;color:var(--text-dim);font-weight:500;letter-spacing:.04em}
+.status-badge{
+  font-size:.7rem;font-weight:600;padding:.2rem .7rem;border-radius:99px;
+  letter-spacing:.04em;
+}
+.status-live{background:rgba(34,211,238,.12);color:var(--cyan);border:1px solid rgba(34,211,238,.25)}
+.status-active{background:rgba(167,139,250,.12);color:var(--violet);border:1px solid rgba(167,139,250,.25)}
+.status-play{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.status-done{background:rgba(148,163,184,.1);color:var(--text-muted);border:1px solid var(--glass-border)}
+.project-title{
+  font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;
+  margin-bottom:.6rem;line-height:1.2;
+}
+.project-desc{font-size:.88rem;color:var(--text-muted);line-height:1.65;flex:1}
+.project-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.project-tag{
+  font-size:.75rem;padding:.25rem .65rem;border-radius:99px;
+  background:rgba(255,255,255,.04);border:1px solid var(--glass-border);
+  color:var(--text-dim);font-family:'JetBrains Mono',monospace;
+}
+.project-footer{
+  padding:1rem 1.5rem;border-top:1px solid var(--glass-border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.project-link{
+  font-size:.82rem;color:var(--cyan);text-decoration:none;font-weight:500;
+  display:flex;align-items:center;gap:.3rem;transition:gap .2s;
+}
+.project-link:hover{gap:.6rem}
+.project-platform-icons{display:flex;gap:.5rem;color:var(--text-dim);font-size:.9rem}
+
+/* MODAL */
+#modal-overlay{
+  position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.85);
+  backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:2rem;
+}
+#modal-overlay.open{display:flex}
+#modal-box{
+  background:var(--bg2);border:1px solid var(--glass-border);
+  border-radius:20px;max-width:680px;width:100%;max-height:88vh;
+  overflow-y:auto;padding:2.5rem;position:relative;
+}
+#modal-box::-webkit-scrollbar{width:3px}
+#modal-box::-webkit-scrollbar-thumb{background:var(--cyan)}
+#modal-close{
+  position:absolute;top:1.5rem;right:1.5rem;background:var(--glass);
+  border:1px solid var(--glass-border);border-radius:99px;padding:.4rem .8rem;
+  color:var(--text-muted);cursor:none;font-size:.85rem;transition:all .2s;
+}
+#modal-close:hover{color:var(--text);border-color:var(--text-muted)}
+.modal-tag{font-size:.75rem;color:var(--violet);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.75rem}
+.modal-title{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.5rem}
+.modal-desc{color:var(--text-muted);line-height:1.75;margin-bottom:1.5rem}
+.modal-section{margin-bottom:1.5rem}
+.modal-section-title{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.75rem}
+.modal-features{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.modal-features li{
+  display:flex;align-items:flex-start;gap:.6rem;font-size:.9rem;color:var(--text-muted);
+}
+.modal-features li::before{content:'→';color:var(--cyan);flex-shrink:0;margin-top:.05rem}
+.modal-tech-row{display:flex;flex-wrap:wrap;gap:.5rem}
+.modal-tech-pill{
+  font-family:'JetBrains Mono',monospace;font-size:.8rem;
+  padding:.3rem .75rem;border-radius:99px;
+  background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.2);color:var(--cyan);
+}
+
+/* GITHUB */
+#github{padding:7rem 0}
+.terminal{
+  background:#0a0c0e;border:1px solid rgba(34,211,238,.15);
+  border-radius:var(--radius);overflow:hidden;font-family:'JetBrains Mono',monospace;
+}
+.terminal-bar{
+  background:#111416;padding:.75rem 1.25rem;
+  display:flex;align-items:center;gap:.6rem;border-bottom:1px solid rgba(34,211,238,.1);
+}
+.t-dot{width:12px;height:12px;border-radius:50%}
+.t-red{background:#ff5f57}.t-yellow{background:#ffbd2e}.t-green{background:#28c840}
+.terminal-title{font-size:.8rem;color:var(--text-dim);margin-left:.5rem}
+.terminal-body{padding:1.5rem 2rem}
+.t-line{display:block;font-size:.88rem;line-height:2;color:var(--text-muted)}
+.t-prompt{color:var(--cyan)}
+.t-path{color:var(--violet)}
+.t-cmd{color:var(--text)}
+.t-out{color:#4ade80}
+.t-link{color:var(--cyan);text-decoration:none}
+.t-link:hover{text-decoration:underline}
+.t-comment{color:var(--text-dim)}
+.t-cursor{
+  display:inline-block;width:8px;height:14px;background:var(--cyan);
+  vertical-align:middle;animation:blink 1s step-end infinite;
+}
+@keyframes blink{50%{opacity:0}}
+.github-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-top:2rem}
+.repo-card{
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:var(--radius);padding:1.25rem;transition:all .25s;
+}
+.repo-card:hover{border-color:rgba(34,211,238,.2);transform:translateY(-3px)}
+.repo-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--cyan);margin-bottom:.4rem}
+.repo-desc{font-size:.82rem;color:var(--text-dim);line-height:1.5;margin-bottom:.75rem}
+.repo-meta{display:flex;align-items:center;gap:1rem;font-size:.78rem;color:var(--text-dim)}
+.repo-lang{display:flex;align-items:center;gap:.3rem}
+.lang-dot{width:8px;height:8px;border-radius:50%}
+
+/* CONTACT */
+#contact{padding:7rem 0}
+.contact-wrap{max-width:700px;margin:0 auto;text-align:center}
+.contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin:2.5rem 0}
+.contact-link{
+  display:flex;align-items:center;gap:.6rem;padding:.75rem 1.5rem;
+  border:1px solid var(--glass-border);background:var(--glass);
+  border-radius:var(--radius-sm);color:var(--text-muted);text-decoration:none;
+  font-weight:500;transition:all .25s;backdrop-filter:blur(8px);font-size:.9rem;
+}
+.contact-link:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(34,211,238,.04)}
+.contact-link i{font-size:1.1rem}
+.contact-form{text-align:left;margin-top:3rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.form-label{font-size:.82rem;font-weight:500;color:var(--text-muted);letter-spacing:.04em}
+.form-input,.form-textarea{
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:var(--radius-sm);padding:.8rem 1rem;color:var(--text);
+  font-family:'Outfit',sans-serif;font-size:.95rem;outline:none;
+  transition:border-color .2s;resize:none;
+}
+.form-input:focus,.form-textarea:focus{border-color:rgba(34,211,238,.4)}
+.form-textarea{min-height:120px}
+.form-submit{
+  width:100%;padding:1rem;
+  background:linear-gradient(135deg,var(--cyan2),var(--violet2));
+  color:#fff;border:none;border-radius:var(--radius-sm);
+  font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;
+  cursor:none;transition:all .25s;margin-top:.5rem;
+}
+.form-submit:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 8px 30px rgba(34,211,238,.25)}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--glass-border);padding:2.5rem 2rem;
+  text-align:center;color:var(--text-dim);font-size:.85rem;
+}
+footer span{color:var(--cyan)}
+
+/* LOADING */
+#loader{
+  position:fixed;inset:0;z-index:9000;background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;
+  transition:opacity .5s,visibility .5s;
+}
+#loader.done{opacity:0;visibility:hidden}
+.loader-logo{
+  font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;
+  background:linear-gradient(135deg,var(--cyan),var(--violet));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.loader-bar{width:200px;height:2px;background:var(--bg3);border-radius:1px;overflow:hidden}
+.loader-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--violet));width:0%;transition:width .05s}
+.loader-text{font-size:.8rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr}
+  .about-visual{display:none}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .nav-links,.nav-right .nav-btn{display:none}
+  #hamburger{display:block}
+  .hero-title{font-size:clamp(2rem,10vw,3rem)}
+  .projects-grid{grid-template-columns:1fr}
+}
+
+/* CAPABILITIES */
+#capabilities{padding:7rem 0;background:linear-gradient(180deg,transparent,rgba(13,15,17,.5),transparent)}
+.caps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.cap-card{
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:var(--radius);padding:1.5rem;transition:all .3s;position:relative;overflow:hidden;
+}
+.cap-card::before{
+  content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;
+  background:linear-gradient(135deg,rgba(34,211,238,.06),rgba(167,139,250,.06));
+}
+.cap-card:hover::before{opacity:1}
+.cap-card:hover{border-color:rgba(167,139,250,.25);transform:translateY(-4px)}
+.cap-icon{font-size:1.6rem;margin-bottom:.75rem;color:var(--violet)}
+.cap-card:nth-child(even) .cap-icon{color:var(--cyan)}
+.cap-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.3rem}
+.cap-desc{font-size:.82rem;color:var(--text-dim);line-height:1.5}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">&lt;dev /&gt;</div>
+  <div class="loader-bar"><div class="loader-fill" id="loader-fill"></div></div>
+  <div class="loader-text" id="loader-text">initializing...</div>
+</div>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- SCROLL PROGRESS -->
+<div id="progress"></div>
+
+<!-- GRID BG -->
+<div class="grid-bg"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">&lt;dev /&gt;</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#tech">Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#capabilities">Skills</a></li>
+    <li><a href="#github">GitHub</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://github.com/mrchetra007" target="_blank" class="nav-btn"><i class="fab fa-github"></i> GitHub</a>
+    <button id="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu">
+  <button id="close-menu" aria-label="Close"><i class="fas fa-times"></i></button>
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#tech" onclick="closeMobileMenu()">Stack</a>
+  <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+  <a href="#capabilities" onclick="closeMobileMenu()">Skills</a>
+  <a href="#github" onclick="closeMobileMenu()">GitHub</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- blobs -->
+  <div class="blob" style="width:500px;height:500px;background:rgba(34,211,238,.07);top:-100px;left:-100px;animation-duration:12s"></div>
+  <div class="blob" style="width:400px;height:400px;background:rgba(167,139,250,.07);bottom:-50px;right:-80px;animation-duration:9s;animation-delay:-4s"></div>
+
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="dot"></span> Open to opportunities</div>
+    <h1 class="hero-title">
+      Building Real Products<br>
+      <span class="line2">for Real Problems</span>
+    </h1>
+    <p class="hero-sub">Full-stack developer focused on SaaS platforms, mobile apps, and production-grade web applications. Vue.js · Flutter · Laravel · Supabase.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary"><span>View Projects →</span></a>
+      <a href="#contact" class="btn-ghost">Contact Me</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Completed Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Play Store App</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">Vue+Flutter</div>
+        <div class="stat-label">Primary Stack</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">Multi</div>
+        <div class="stat-label">Platform Engineer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-img">
+          <span class="about-initials">MRC</span>
+        </div>
+        <div class="about-badge-wrap">
+          <div class="about-badge"><i class="fas fa-graduation-cap"></i> National University of Battambang — IT, Year 4</div>
+          <div class="about-badge"><i class="fas fa-map-marker-alt"></i> Cambodia</div>
+          <div class="about-badge"><i class="fab fa-github"></i> github.com/mrchetra007</div>
+          <div class="about-badge"><i class="fas fa-circle" style="color:#4ade80;font-size:.5rem"></i> Available for work</div>
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <div class="section-tag">About Me</div>
+        <h2 class="section-title">Self-driven engineer. End-to-end builder.</h2>
+        <p>I'm a final-year Information Technology student who builds complete, production-ready applications from scratch — no half-finished demos, no tutorial clones. Every project in my portfolio is functional, deployed, and solves a real-world problem.</p>
+        <p>I pick up new frameworks by building with them. I've independently learned Vue.js, Flutter, Kotlin, Laravel, and Supabase by shipping real products. I'm comfortable across web, mobile, and desktop — and I care about the details that make software feel polished.</p>
+        <p>Currently looking for a team where I can contribute meaningfully, keep growing, and build things that matter.</p>
+        <div class="about-pills">
+          <span class="pill">SaaS Architecture</span>
+          <span class="pill">Real-time Systems</span>
+          <span class="pill">RBAC</span>
+          <span class="pill">Payment Integration</span>
+          <span class="pill">Cross-platform</span>
+          <span class="pill">REST APIs</span>
+          <span class="pill">Database Design</span>
+          <span class="pill">UI/UX</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Technologies</div>
+      <h2 class="section-title">My Tech Stack</h2>
+      <p class="section-sub">Technologies I've used to build production applications across web, mobile, and desktop.</p>
+    </div>
+    <div class="tech-categories reveal">
+      <div>
+        <div class="tech-category-label">Frontend / Web</div>
+        <div class="tech-row">
+          <div class="tech-badge"><span class="dot" style="background:#42b883"></span> Vue.js 3</div>
+          <div class="tech-badge"><span class="dot" style="background:#f7df1e"></span> JavaScript</div>
+          <div class="tech-badge"><span class="dot" style="background:#e34f26"></span> HTML5</div>
+          <div class="tech-badge"><span class="dot" style="background:#264de4"></span> CSS3</div>
+          <div class="tech-badge"><span class="dot" style="background:#38bdf8"></span> Tailwind CSS</div>
+          <div class="tech-badge"><span class="dot" style="background:#6c47ff"></span> Inertia.js</div>
+        </div>
+      </div>
+      <div>
+        <div class="tech-category-label">Mobile</div>
+        <div class="tech-row">
+          <div class="tech-badge"><span class="dot" style="background:#02569b"></span> Flutter</div>
+          <div class="tech-badge"><span class="dot" style="background:#00b4ab"></span> Dart</div>
+          <div class="tech-badge"><span class="dot" style="background:#7f52ff"></span> Kotlin</div>
+          <div class="tech-badge"><span class="dot" style="background:#02569b"></span> Android Studio</div>
+        </div>
+      </div>
+      <div>
+        <div class="tech-category-label">Backend</div>
+        <div class="tech-row">
+          <div class="tech-badge"><span class="dot" style="background:#ff2d20"></span> Laravel (PHP)</div>
+          <div class="tech-badge"><span class="dot" style="background:#3fcf8e"></span> Supabase</div>
+          <div class="tech-badge"><span class="dot" style="background:#ffca28"></span> Firebase</div>
+          <div class="tech-badge"><span class="dot" style="background:#00618a"></span> REST APIs</div>
+        </div>
+      </div>
+      <div>
+        <div class="tech-category-label">Databases</div>
+        <div class="tech-row">
+          <div class="tech-badge"><span class="dot" style="background:#336791"></span> PostgreSQL</div>
+          <div class="tech-badge"><span class="dot" style="background:#ffca28"></span> Firebase Firestore</div>
+          <div class="tech-badge"><span class="dot" style="background:#003b57"></span> SQLite</div>
+          <div class="tech-badge"><span class="dot" style="background:#cc2927"></span> SQL Server</div>
+        </div>
+      </div>
+      <div>
+        <div class="tech-category-label">Payments / APIs / Tools</div>
+        <div class="tech-row">
+          <div class="tech-badge"><span class="dot" style="background:#ffd700"></span> LemonSqueezy</div>
+          <div class="tech-badge"><span class="dot" style="background:#4285f4"></span> Gemini API</div>
+          <div class="tech-badge"><span class="dot" style="background:#f05032"></span> Git / GitHub</div>
+          <div class="tech-badge"><span class="dot" style="background:#000"></span> Vercel</div>
+          <div class="tech-badge"><span class="dot" style="background:#007acc"></span> VS Code</div>
+        </div>
+      </div>
+      <div>
+        <div class="tech-category-label">Systems / Other</div>
+        <div class="tech-row">
+          <div class="tech-badge"><span class="dot" style="background:#9b4f96"></span> C#</div>
+          <div class="tech-badge"><span class="dot" style="background:#00599c"></span> C++</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Work</div>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">Real applications I've built end-to-end. Each one is functional, deployed, or in active use.</p>
+    </div>
+    <div class="projects-filter reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="web">Web</button>
+      <button class="filter-btn" data-filter="mobile">Mobile</button>
+      <button class="filter-btn" data-filter="saas">SaaS</button>
+    </div>
+    <div class="projects-grid" id="projects-grid">
+
+      <!-- QRServe -->
+      <div class="project-card reveal" data-category="web saas" data-project="qrserve">
+        <div class="project-thumb">
+          <div class="project-thumb-glow"></div>
+          <div class="project-thumb-icon">🍽️</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-type">Full-stack SaaS · Web</span>
+            <span class="status-badge status-live">LIVE</span>
+          </div>
+          <div class="project-title">QRServe — QR Ordering System</div>
+          <div class="project-desc">Restaurant QR-code ordering platform with real-time order management, online payments, and dynamic QR-linked menus. Deployed and live.</div>
+          <div class="project-tags">
+            <span class="project-tag">Vue.js</span>
+            <span class="project-tag">Supabase</span>
+            <span class="project-tag">LemonSqueezy</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <a href="https://qrserve.vercel.app" target="_blank" class="project-link">qrserve.vercel.app <i class="fas fa-arrow-right"></i></a>
+          <div class="project-platform-icons"><i class="fas fa-globe" title="Web"></i></div>
+        </div>
+      </div>
+
+      <!-- Science Lab -->
+      <div class="project-card reveal" data-category="mobile" data-project="sciencelab">
+        <div class="project-thumb">
+          <div class="project-thumb-glow" style="background:radial-gradient(circle at 50% 80%,rgba(167,139,250,.1),transparent 60%)"></div>
+          <div class="project-thumb-icon">⚗️</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-type">Educational Simulation · Mobile</span>
+            <span class="status-badge status-play">PLAY STORE</span>
+          </div>
+          <div class="project-title">Science Lab — Physics Simulation</div>
+          <div class="project-desc">Mobile app visualizing physics concepts like projectile motion and wave behavior through real-time interactive simulations with adjustable parameters.</div>
+          <div class="project-tags">
+            <span class="project-tag">Flutter</span>
+            <span class="project-tag">Dart</span>
+            <span class="project-tag">Physics Engine</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span class="project-link" style="color:var(--violet)">Published on Play Store</span>
+          <div class="project-platform-icons"><i class="fab fa-android" title="Android"></i></div>
+        </div>
+      </div>
+
+      <!-- Flora AI -->
+      <div class="project-card reveal" data-category="mobile" data-project="flora">
+        <div class="project-thumb">
+          <div class="project-thumb-glow" style="background:radial-gradient(circle at 50% 80%,rgba(74,222,128,.07),transparent 60%)"></div>
+          <div class="project-thumb-icon">🌿</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-type">AI Mobile App</span>
+            <span class="status-badge status-done">COMPLETED</span>
+          </div>
+          <div class="project-title">Flora AI — Plant Identifier & Care Planner</div>
+          <div class="project-desc">Uses Google Gemini AI to identify plant species and generate personalized 7-day care plans. Offline-capable with local SQLite storage.</div>
+          <div class="project-tags">
+            <span class="project-tag">Flutter</span>
+            <span class="project-tag">Gemini API</span>
+            <span class="project-tag">SQLite</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span class="project-link" style="color:var(--text-dim);cursor:default">Mobile App</span>
+          <div class="project-platform-icons"><i class="fab fa-android"></i><i class="fab fa-apple"></i></div>
+        </div>
+      </div>
+
+      <!-- BankSim -->
+      <div class="project-card reveal" data-category="mobile" data-project="banksim">
+        <div class="project-thumb">
+          <div class="project-thumb-glow"></div>
+          <div class="project-thumb-icon">🏦</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-type">Native Android</span>
+            <span class="status-badge status-done">COMPLETED</span>
+          </div>
+          <div class="project-title">BankSim — Banking App Simulation</div>
+          <div class="project-desc">Native Android banking simulation with real user accounts, unique bank numbers, peer-to-peer transfers, QR code payments, and real-time balance updates.</div>
+          <div class="project-tags">
+            <span class="project-tag">Kotlin</span>
+            <span class="project-tag">Firebase Auth</span>
+            <span class="project-tag">Realtime DB</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span class="project-link" style="color:var(--text-dim);cursor:default">Android App</span>
+          <div class="project-platform-icons"><i class="fab fa-android"></i></div>
+        </div>
+      </div>
+
+      <!-- Inventory -->
+      <div class="project-card reveal" data-category="web" data-project="inventory">
+        <div class="project-thumb">
+          <div class="project-thumb-glow"></div>
+          <div class="project-thumb-icon">📦</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-type">Full-stack Web App</span>
+            <span class="status-badge status-done">COMPLETED</span>
+          </div>
+          <div class="project-title">Inventory Management System</div>
+          <div class="project-desc">Full-stack web app with server-side rendering via Inertia.js, RESTful Laravel backend, and Vue.js SPA frontend for managing inventory records.</div>
+          <div class="project-tags">
+            <span class="project-tag">Vue.js</span>
+            <span class="project-tag">Laravel</span>
+            <span class="project-tag">Inertia.js</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span class="project-link" style="color:var(--text-dim);cursor:default">Web App</span>
+          <div class="project-platform-icons"><i class="fas fa-globe"></i></div>
+        </div>
+      </div>
+
+      <!-- Flutter E-Commerce -->
+      <div class="project-card reveal" data-category="mobile" data-project="ecommerce">
+        <div class="project-thumb">
+          <div class="project-thumb-glow"></div>
+          <div class="project-thumb-icon">💬</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-type">Cross-platform Mobile</span>
+            <span class="status-badge status-done">COMPLETED</span>
+          </div>
+          <div class="project-title">Flutter Chat / E-Commerce App</div>
+          <div class="project-desc">Real-time cross-platform application with Firebase Auth, live messaging via Firestore, and real-time data sync across multiple users.</div>
+          <div class="project-tags">
+            <span class="project-tag">Flutter</span>
+            <span class="project-tag">Firebase</span>
+            <span class="project-tag">Firestore</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span class="project-link" style="color:var(--text-dim);cursor:default">Cross-platform</span>
+          <div class="project-platform-icons"><i class="fab fa-android"></i><i class="fab fa-apple"></i></div>
+        </div>
+      </div>
+
+      <!-- E-Commerce CRUD -->
+      <div class="project-card reveal" data-category="web" data-project="crud">
+        <div class="project-thumb">
+          <div class="project-thumb-glow"></div>
+          <div class="project-thumb-icon">🖥️</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-type">Desktop Application</span>
+            <span class="status-badge status-done">COMPLETED</span>
+          </div>
+          <div class="project-title">E-Commerce CRUD System</div>
+          <div class="project-desc">Windows desktop application for managing an e-commerce product catalog with full CRUD functionality backed by a relational SQL Server database.</div>
+          <div class="project-tags">
+            <span class="project-tag">C#</span>
+            <span class="project-tag">SQL Server</span>
+            <span class="project-tag">Windows Forms</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <span class="project-link" style="color:var(--text-dim);cursor:default">Desktop</span>
+          <div class="project-platform-icons"><i class="fab fa-windows"></i></div>
+        </div>
+      </div>
+
+      <!-- Digital Clock -->
+      <div class="project-card reveal" data-category="web" data-project="clock">
+        <div class="project-thumb">
+          <div class="project-thumb-glow"></div>
+          <div class="project-thumb-icon">⏰</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-type">Systems Programming</span>
+            <span class="status-badge status-done">COMPLETED</span>
+          </div>
+          <div class="project-title">Digital Clock App</div>
+          <div class="project-desc">Console-based clock application demonstrating systems-level programming, time manipulation, and real-time display rendering in C++.</div>
+          <div class="project-tags">
+            <span class="project-tag">C++</span>
+            <span class="project-tag">Systems</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <a href="https://github.com/mrchetra007" target="_blank" class="project-link">GitHub <i class="fas fa-arrow-right"></i></a>
+          <div class="project-platform-icons"><i class="fas fa-terminal"></i></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Capabilities</div>
+      <h2 class="section-title">What I Build</h2>
+      <p class="section-sub">From SaaS platforms to native mobile apps — I work across the full stack.</p>
+    </div>
+    <div class="caps-grid">
+      <div class="cap-card reveal">
+        <div class="cap-icon"><i class="fas fa-layer-group"></i></div>
+        <div class="cap-title">SaaS Architecture</div>
+        <div class="cap-desc">Subscription billing, multi-tenant design, freemium flows</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon"><i class="fas fa-mobile-alt"></i></div>
+        <div class="cap-title">Mobile Engineering</div>
+        <div class="cap-desc">Cross-platform Flutter apps and native Kotlin Android</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon"><i class="fas fa-bolt"></i></div>
+        <div class="cap-title">Real-time Systems</div>
+        <div class="cap-desc">Live data with Firebase, Supabase realtime subscriptions</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon"><i class="fas fa-credit-card"></i></div>
+        <div class="cap-title">Payment Integration</div>
+        <div class="cap-desc">LemonSqueezy payments, subscriptions and one-time purchases</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="cap-title">Auth & RBAC</div>
+        <div class="cap-desc">Role-based access control, Firebase Auth, Supabase Auth</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon"><i class="fas fa-flask"></i></div>
+        <div class="cap-title">Simulation Dev</div>
+        <div class="cap-desc">Interactive physics visualizations with real-time parameters</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon"><i class="fas fa-server"></i></div>
+        <div class="cap-title">Backend APIs</div>
+        <div class="cap-desc">RESTful APIs with Laravel, database design and migrations</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon"><i class="fas fa-robot"></i></div>
+        <div class="cap-title">AI Integration</div>
+        <div class="cap-desc">Google Gemini API for intelligent features in mobile apps</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon"><i class="fas fa-qrcode"></i></div>
+        <div class="cap-title">QR Systems</div>
+        <div class="cap-desc">QR ordering flows, digital ID cards, QR-based payments</div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon"><i class="fas fa-palette"></i></div>
+        <div class="cap-title">UI/UX Engineering</div>
+        <div class="cap-desc">Polished interfaces, responsive design, smooth interactions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GITHUB -->
+<section id="github">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Open Source</div>
+      <h2 class="section-title">GitHub</h2>
+      <p class="section-sub">All my projects are built from scratch. No forks, no copy-paste.</p>
+    </div>
+    <div class="terminal reveal">
+      <div class="terminal-bar">
+        <div class="t-dot t-red"></div>
+        <div class="t-dot t-yellow"></div>
+        <div class="t-dot t-green"></div>
+        <span class="terminal-title">mrchetra007 — bash</span>
+      </div>
+      <div class="terminal-body">
+        <span class="t-line"><span class="t-prompt">~</span> <span class="t-cmd">whoami</span></span>
+        <span class="t-line"><span class="t-out">mrchetra007 — Full-stack & Mobile Developer</span></span>
+        <span class="t-line"> </span>
+        <span class="t-line"><span class="t-prompt">~</span> <span class="t-cmd">cat profile.json</span></span>
+        <span class="t-line"><span class="t-out">{</span></span>
+        <span class="t-line"><span class="t-out">&nbsp;&nbsp;"university": "National University of Battambang",</span></span>
+        <span class="t-line"><span class="t-out">&nbsp;&nbsp;"year": "4th Year IT",</span></span>
+        <span class="t-line"><span class="t-out">&nbsp;&nbsp;"location": "Cambodia",</span></span>
+        <span class="t-line"><span class="t-out">&nbsp;&nbsp;"focus": ["Vue.js", "Flutter", "Laravel", "Supabase"],</span></span>
+        <span class="t-line"><span class="t-out">&nbsp;&nbsp;"status": "Open to opportunities"</span></span>
+        <span class="t-line"><span class="t-out">}</span></span>
+        <span class="t-line"> </span>
+        <span class="t-line"><span class="t-prompt">~</span> <span class="t-cmd">open github</span></span>
+        <span class="t-line"><span class="t-out">→ <a href="https://github.com/mrchetra007" target="_blank" class="t-link">https://github.com/mrchetra007</a></span></span>
+        <span class="t-line"> </span>
+        <span class="t-line"><span class="t-prompt">~</span> <span class="t-cursor"></span></span>
+      </div>
+    </div>
+    <div class="github-cards">
+      <div class="repo-card reveal">
+        <div class="repo-name">qrserve</div>
+        <div class="repo-desc">Full-stack QR ordering SaaS for restaurants with payments integration</div>
+        <div class="repo-meta">
+          <span class="repo-lang"><span class="lang-dot" style="background:#42b883"></span>Vue.js</span>
+          <span>⭐ Live</span>
+        </div>
+      </div>
+      <div class="repo-card reveal">
+        <div class="repo-name">science-lab</div>
+        <div class="repo-desc">Physics simulation mobile app — Published on Google Play Store</div>
+        <div class="repo-meta">
+          <span class="repo-lang"><span class="lang-dot" style="background:#02569b"></span>Flutter</span>
+          <span>📱 Published</span>
+        </div>
+      </div>
+      <div class="repo-card reveal">
+        <div class="repo-name">flora-ai</div>
+        <div class="repo-desc">Plant identifier using Google Gemini AI with offline SQLite storage</div>
+        <div class="repo-meta">
+          <span class="repo-lang"><span class="lang-dot" style="background:#02569b"></span>Flutter</span>
+          <span>🤖 AI</span>
+        </div>
+      </div>
+      <div class="repo-card reveal">
+        <div class="repo-name">banksim</div>
+        <div class="repo-desc">Native Android banking simulation with QR payments and real-time transfers</div>
+        <div class="repo-meta">
+          <span class="repo-lang"><span class="lang-dot" style="background:#7f52ff"></span>Kotlin</span>
+          <span>📲 Android</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="https://github.com/mrchetra007" target="_blank" class="btn-ghost">View All Repositories →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-wrap">
+      <div class="section-header reveal">
+        <div class="section-tag">Contact</div>
+        <h2 class="section-title">Let's Build Something Meaningful</h2>
+        <p class="section-sub">I'm actively looking for junior developer roles. If you have an interesting project or a team that values builders, I'd love to talk.</p>
+      </div>
+      <div class="contact-links reveal">
+        <a href="https://github.com/mrchetra007" target="_blank" class="contact-link"><i class="fab fa-github"></i> GitHub</a>
+        <a href="mailto:your@email.com" class="contact-link"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://t.me/yourtelegram" class="contact-link"><i class="fab fa-telegram"></i> Telegram</a>
+        <a href="https://linkedin.com/in/yourprofile" class="contact-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      </div>
+      <div class="contact-form reveal">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Name</label>
+            <input class="form-input" type="text" placeholder="Your name"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-input" type="email" placeholder="your@email.com"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <input class="form-input" type="text" placeholder="Job opportunity / Collaboration / Project"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell me about your project or role..."></textarea>
+        </div>
+        <button class="form-submit" onclick="handleFormSubmit(this)">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built with <span>♥</span> by <span>mrchetra007</span> · National University of Battambang · Cambodia</p>
+  <p style="margin-top:.5rem;font-size:.78rem;color:var(--text-dim)">Vue.js · Flutter · Laravel · Supabase · Firebase · Kotlin</p>
+</footer>
+
+<!-- MODAL -->
+<div id="modal-overlay">
+  <div id="modal-box">
+    <button id="modal-close" onclick="closeModal()">✕ Close</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+// LOADER
+const fill = document.getElementById('loader-fill');
+const loaderText = document.getElementById('loader-text');
+const msgs = ['initializing...','loading stack...','building UI...','ready.'];
+let p = 0;
+const loaderInt = setInterval(() => {
+  p += Math.random() * 18 + 8;
+  if(p > 100) p = 100;
+  fill.style.width = p + '%';
+  loaderText.textContent = msgs[Math.min(Math.floor(p/26), msgs.length-1)];
+  if(p >= 100){
+    clearInterval(loaderInt);
+    setTimeout(() => document.getElementById('loader').classList.add('done'), 300);
+  }
+}, 80);
+
+// CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+function animRing(){
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx+'px';
+  ring.style.top = ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a,button,.project-card,.cap-card,.stat-card,.tech-badge').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; ring.style.width = '50px'; ring.style.height = '50px'; });
+  el.addEventListener('mouseleave', () => { cursor.style.width = '12px'; cursor.style.height = '12px'; ring.style.width = '36px'; ring.style.height = '36px'; });
+});
+
+// SCROLL PROGRESS
+const prog = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  prog.style.width = pct + '%';
+});
+
+// NAV
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  highlightNav();
+});
+
+function highlightNav(){
+  const sections = document.querySelectorAll('section[id]');
+  let cur = '';
+  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+}
+
+// HAMBURGER
+document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobile-menu').classList.add('open'));
+document.getElementById('close-menu').addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
+function closeMobileMenu(){ document.getElementById('mobile-menu').classList.remove('open'); }
+
+// REVEAL ON SCROLL
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// PROJECT FILTER
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.dataset.filter;
+    document.querySelectorAll('.project-card').forEach(card => {
+      const cat = card.dataset.category || '';
+      card.style.display = (filter === 'all' || cat.includes(filter)) ? 'flex' : 'none';
+    });
+  });
+});
+
+// PROJECT MODAL DATA
+const projectData = {
+  qrserve: {
+    tag: 'Full-stack SaaS · Web',
+    title: 'QRServe — QR Ordering System',
+    desc: 'A full-stack SaaS QR-code ordering platform for restaurants. Customers scan a QR code to view the menu and place orders in real-time. Restaurant owners manage orders through a live dashboard. Live at qrserve.vercel.app.',
+    features: ['QR-linked dynamic menus per table','Real-time order management dashboard','Online payments via LemonSqueezy','Supabase realtime subscriptions for instant updates','Multi-restaurant support architecture'],
+    tech: ['Vue.js 3','Supabase','PostgreSQL','LemonSqueezy','Vercel'],
+    status: 'Live · qrserve.vercel.app'
+  },
+  sciencelab: {
+    tag: 'Educational Simulation · Mobile',
+    title: 'Science Lab — Physics Simulation App',
+    desc: 'A mobile application that visualizes physics concepts through real-time interactive simulations. Users can adjust parameters like velocity, angle, and frequency and instantly observe the results, making abstract physics intuitive.',
+    features: ['Projectile motion simulation with adjustable parameters','Wave behavior visualization','Real-time physics calculations','Interactive parameter controls','Deployed to Google Play Store'],
+    tech: ['Flutter','Dart','Custom Physics Engine','Interactive UI'],
+    status: 'Published on Google Play Store'
+  },
+  flora: {
+    tag: 'AI Mobile App',
+    title: 'Flora AI — Plant Identifier & Care Planner',
+    desc: 'A Flutter mobile app that uses Google Gemini AI to identify plant species from photos and generate a personalized 7-day care plan. All plant data and schedules are stored locally with SQLite for offline access.',
+    features: ['AI-powered plant species identification via Gemini','Personalized 7-day care plan generation','Offline-capable with SQLite local storage','Care schedule and reminders','Cross-platform: iOS and Android'],
+    tech: ['Flutter','Dart','Google Gemini API','SQLite'],
+    status: 'Completed'
+  },
+  banksim: {
+    tag: 'Native Android',
+    title: 'BankSim — Banking App Simulation',
+    desc: 'A native Kotlin Android banking simulation with real user accounts. Demonstrates peer-to-peer money transfers, QR code-based payments, and real-time balance updates.',
+    features: ['Real user accounts with unique bank numbers','Peer-to-peer money transfers','QR code-based payment flow','Firebase Auth for secure login','Real-time balance via Firebase Realtime Database'],
+    tech: ['Kotlin','Firebase Auth','Firebase Realtime Database','Android Studio'],
+    status: 'Completed'
+  },
+  inventory: {
+    tag: 'Full-stack Web App',
+    title: 'Inventory Management System',
+    desc: 'A full-stack web application with server-side rendering via Inertia.js. Features a RESTful Laravel backend and a Vue.js SPA frontend for full inventory management.',
+    features: ['Server-side rendering with Inertia.js','RESTful Laravel backend','Vue.js SPA frontend','Full CRUD for inventory records','Authentication and session management'],
+    tech: ['Inertia.js','Vue.js','Laravel','PHP','MySQL'],
+    status: 'Completed'
+  },
+  ecommerce: {
+    tag: 'Cross-platform Mobile',
+    title: 'Flutter Chat / E-Commerce App',
+    desc: 'A real-time cross-platform application built with Flutter and Firebase. Features user authentication and live messaging powered by Firebase Firestore with seamless multi-user data sync.',
+    features: ['User authentication via Firebase Auth','Real-time chat with Firestore','Live data sync across multiple users','Cross-platform: Android and iOS','Clean and responsive UI'],
+    tech: ['Flutter','Dart','Firebase Auth','Cloud Firestore'],
+    status: 'Completed'
+  },
+  crud: {
+    tag: 'Desktop Application',
+    title: 'E-Commerce CRUD System',
+    desc: 'A Windows desktop application for managing an e-commerce store\'s product catalog. Full create, read, update, and delete functionality backed by a relational SQL Server database.',
+    features: ['Full CRUD product catalog management','SQL Server relational database','Windows Forms UI','Data validation and error handling','Product search and filtering'],
+    tech: ['C#','SQL Server','Windows Forms','.NET'],
+    status: 'Completed'
+  },
+  clock: {
+    tag: 'Systems Programming',
+    title: 'Digital Clock App',
+    desc: 'A console-based digital clock application built in C++. Demonstrates systems-level programming concepts including time manipulation, real-time display rendering, and console I/O management.',
+    features: ['Real-time clock display in console','C++ standard library time functions','Efficient refresh mechanism','Cross-platform compatible code'],
+    tech: ['C++','Standard Library','Console I/O'],
+    status: 'Completed'
+  }
+};
+
+// PROJECT CARD CLICK
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('click', (e) => {
+    if(e.target.closest('a')) return;
+    openModal(card.dataset.project);
+  });
+});
+
+function openModal(key){
+  const d = projectData[key];
+  if(!d) return;
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-tag">${d.tag}</div>
+    <div class="modal-title">${d.title}</div>
+    <div class="modal-desc">${d.desc}</div>
+    <div class="modal-section">
+      <div class="modal-section-title">Key Features</div>
+      <ul class="modal-features">${d.features.map(f => `<li>${f}</li>`).join('')}</ul>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Tech Stack</div>
+      <div class="modal-tech-row">${d.tech.map(t => `<span class="modal-tech-pill">${t}</span>`).join('')}</div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Status</div>
+      <div style="color:var(--cyan);font-size:.9rem;font-weight:500">${d.status}</div>
+    </div>
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if(e.target === document.getElementById('modal-overlay')) closeModal();
+});
+
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+// FORM
+function handleFormSubmit(btn){
+  const orig = btn.textContent;
+  btn.textContent = 'Sent! ✓';
+  btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 3000);
+}
+
+// ANIMATED COUNTER
+function animCounter(el, target, suffix=''){
+  let start = 0;
+  const step = target / 40;
+  const int = setInterval(() => {
+    start += step;
+    if(start >= target){ start = target; clearInterval(int); }
+    el.textContent = Math.floor(start) + suffix;
+  }, 35);
+}
+
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const nums = e.target.querySelectorAll('.stat-num');
+      nums.forEach(n => {
+        const txt = n.textContent;
+        const num = parseInt(txt);
+        if(!isNaN(num)) animCounter(n, num, txt.includes('+') ? '+' : '');
+      });
+      counterObs.unobserve(e.target);
+    }
+  });
+}, { threshold: .5 });
+
+document.querySelectorAll('.hero-stats').forEach(el => counterObs.observe(el));
+</script>
+</body>
+</html>
