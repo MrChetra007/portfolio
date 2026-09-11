@@ -483,6 +483,43 @@ section { padding: 6rem 2rem; }
 .hobbies-content { max-width: 700px; }
 .hobbies-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.9; font-weight: 300; }
 
+/* PROFILE PHOTO */
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+    margin-bottom: 1.5rem;
+    transition: border-color 0.3s;
+}
+.profile-photo:hover { border-color: #fff; }
+
+/* CERTIFICATES */
+.certificates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+.certificate-card {
+    padding: 2rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+}
+.certificate-card:hover { background: rgba(255,255,255,0.03); }
+.certificate-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
+.certificate-card .cert-type { color: var(--text-muted); font-size: 0.8rem; font-family: 'DM Mono', monospace; margin-bottom: 1rem; }
+.certificate-card a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #fff;
+    font-size: 0.8125rem;
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.9rem;
+    transition: all 0.2s;
+}
+.certificate-card a:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
+
 /* LANGUAGES */
 .languages-grid { display: flex; justify-content: flex-start; gap: 0; flex-wrap: wrap; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
 .language-item {
