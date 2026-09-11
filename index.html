@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seth Sochetra | Full-Stack & Mobile Developer</title>
+    <title>Seth Sochetra | Full-Stack Developer & Educator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -465,6 +465,35 @@
         .education-card .institution { color: var(--text-muted); font-weight: 400; margin-bottom: 0.25rem; font-size: 0.9rem; }
         .education-card .details { color: var(--text-dim); font-size: 0.8125rem; font-family: 'DM Mono', monospace; }
 
+        /* EXPERIENCE */
+        .experience-card {
+            border: 1px solid var(--border);
+            padding: 2rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.2s;
+        }
+        .experience-card:hover { border-color: #fff; }
+        .experience-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .experience-card .exp-org { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.15rem; }
+        .experience-card .exp-date { color: var(--text-dim); font-size: 0.8rem; font-family: 'DM Mono', monospace; margin-bottom: 0.75rem; }
+        .experience-card p { color: var(--text-muted); font-size: 0.875rem; font-weight: 300; line-height: 1.7; }
+
+        /* REFERENCES */
+        .references-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+        .reference-card {
+            padding: 2rem;
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+        .reference-card:hover { background: rgba(255,255,255,0.03); }
+        .reference-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .reference-card .ref-title { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
+
+        /* HOBBIES */
+        .hobbies-content { max-width: 700px; }
+        .hobbies-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.9; font-weight: 300; }
+
         /* LANGUAGES */
         .languages-grid { display: flex; justify-content: flex-start; gap: 0; flex-wrap: wrap; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
         .language-item {
@@ -563,10 +592,12 @@
             <a href="#" class="logo">Seth Sochetra</a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#capabilities">Capabilities</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#education">Education</a></li>
+                <li><a href="#references">References</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMenu()">
@@ -586,7 +617,7 @@
             </div>
             <h1>
                 Hi, I'm <span class="gradient-text">Seth Sochetra</span><br>
-                Full-Stack & Mobile Developer
+                Full-Stack Developer & Educator
             </h1>
             <p class="hero-subtitle">
                 Self-driven developer from Cambodia building complete, production-ready applications end-to-end. 
@@ -604,7 +635,7 @@
             </div>
             <div class="hero-stats">
                 <div class="stat">
-                    <div class="stat-value">12</div>
+                    <div class="stat-value">13</div>
                     <div class="stat-label">Projects Shipped</div>
                 </div>
                 <div class="stat">
@@ -632,7 +663,7 @@
             </div>
             <div class="about-grid">
                 <div class="about-text">
-                    <h3>End-to-End Product Developer</h3>
+                    <h3>End-to-End Product Developer & Educator</h3>
                     <p>
                         I'm a final-year Information Technology student at the National University of Battambang, Cambodia. 
                         I don't just follow tutorials — I independently learned Vue.js, Flutter, Kotlin, Laravel, and Supabase 
@@ -643,6 +674,11 @@
                         Whether it's a SaaS QR ordering system for restaurants, a physics simulation app for students, or a 
                         school management platform for Cambodian primary schools — I care about the details that make software 
                         feel polished and professional.
+                    </p>
+                    <p>
+                        I combine this with hands-on classroom teaching experience as a Computer Skills Instructor and a 
+                        Grade 3 Primary School Teacher — delivering computer literacy classes and building learning materials 
+                        for young students.
                     </p>
                     <p>
                         I'm actively looking for a junior developer role where I can contribute meaningfully, 
@@ -688,6 +724,29 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work & Teaching Experience Section -->
+    <section id="experience" style="background: var(--bg-elevated);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Experience</span>
+                <h2>Work & Teaching</h2>
+                <p>Hands-on classroom teaching and computer literacy instruction alongside my development work.</p>
+            </div>
+            <div class="experience-card fade-in">
+                <h3>Computer Skills Instructor (MS Office, Photoshop, Basic Arduino)</h3>
+                <p class="exp-org">សាលាបណ្ដុះបណ្ដ្លកដុំព្យូទ័រសាាយធុំ</p>
+                <p class="exp-date">2024 – Present</p>
+                <p>Teaches practical computer literacy classes covering Microsoft Office, Adobe Photoshop, and introductory Arduino/electronics concepts.</p>
+            </div>
+            <div class="experience-card fade-in">
+                <h3>Primary School Teacher, Grade 3</h3>
+                <p class="exp-org">បឋមសិកាសាាយជាតិ</p>
+                <p class="exp-date">Nov 2024 – Present</p>
+                <p>Delivers grade 3 primary curriculum and builds supporting learning materials for young students.</p>
             </div>
         </div>
     </section>
@@ -748,6 +807,7 @@
                         <span class="skill-tag">Laravel</span>
                         <span class="skill-tag">PHP</span>
                         <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Spring Boot</span>
                         <span class="skill-tag">C#</span>
                         <span class="skill-tag">C++</span>
                     </div>
@@ -779,7 +839,9 @@
                     </div>
                     <div class="skill-tags">
                         <span class="skill-tag">KHQR / Bakong API</span>
+                        <span class="skill-tag">ABA Payway</span>
                         <span class="skill-tag">LemonSqueezy</span>
+                        <span class="skill-tag">RevenueCat</span>
                         <span class="skill-tag">Google Gemini AI</span>
                         <span class="skill-tag">SaaS Billing</span>
                         <span class="skill-tag">Freemium</span>
@@ -800,6 +862,38 @@
                         <span class="skill-tag">Android Studio</span>
                         <span class="skill-tag">VS Code</span>
                         <span class="skill-tag">Windows Forms</span>
+                    </div>
+                </div>
+
+                <div class="skill-card fade-in">
+                    <div class="skill-card-header">
+                        <div class="skill-icon">
+                            <i data-lucide="bot" width="20" height="20"></i>
+                        </div>
+                        <h3>AI Coding Agents</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Claude</span>
+                        <span class="skill-tag">OpenAI Codex</span>
+                        <span class="skill-tag">Google Antigravity</span>
+                        <span class="skill-tag">OpenCode</span>
+                    </div>
+                </div>
+
+                <div class="skill-card fade-in">
+                    <div class="skill-card-header">
+                        <div class="skill-icon">
+                            <i data-lucide="pen-tool" width="20" height="20"></i>
+                        </div>
+                        <h3>Design & Productivity</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Microsoft Word</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">PowerPoint</span>
+                        <span class="skill-tag">Adobe Photoshop</span>
+                        <span class="skill-tag">CapCut</span>
+                        <span class="skill-tag">DaVinci Resolve</span>
                     </div>
                 </div>
             </div>
@@ -887,6 +981,7 @@
                             <span class="stack-tag">TypeScript</span>
                             <span class="stack-tag">Tailwind CSS</span>
                             <span class="stack-tag">Supabase</span>
+                            <span class="stack-tag">Zustand</span>
                             <span class="stack-tag">KHQR / Bakong</span>
                         </div>
                     </div>
@@ -1028,28 +1123,29 @@
                 <!-- Primary School Management -->
                 <div class="project-card fade-in">
                     <div class="project-header">
-                        <span class="project-status status-dev">
-                            <i data-lucide="hammer" width="12" height="12"></i> IN DEVELOPMENT
+                        <span class="project-status status-live">
+                            <i data-lucide="radio" width="12" height="12"></i> LIVE PILOT
                         </span>
                         <h3>Primary School Management</h3>
                         <a href="https://primary-school-management-upgrade.vercel.app/" target="_blank" class="project-link">
                             primary-school-management-upgrade.vercel.app <i data-lucide="external-link" width="14" height="14"></i>
                         </a>
                         <div class="project-stack">
-                            <span class="stack-tag">Flutter</span>
-                            <span class="stack-tag">SQL</span>
+                            <span class="stack-tag">Vue.js 3</span>
+                            <span class="stack-tag">Vite</span>
+                            <span class="stack-tag">Tailwind CSS</span>
                             <span class="stack-tag">Supabase</span>
-                            <span class="stack-tag">Firebase</span>
+                            <span class="stack-tag">PostgreSQL</span>
                         </div>
                     </div>
                     <p class="project-desc">
-                        A Khmer-first multi-school management platform for Cambodian primary schools. Built for real-world deployment with direct collaboration from school directors and teachers.
+                        A Khmer-first multi-tenant school management PWA, piloted at a school in Battambang with directors and teachers. Covers student records, attendance, scores, health records, library, and budget/inventory with role-based access.
                     </p>
                     <ul class="project-features">
-                        <li><i data-lucide="check" width="16" height="16"></i> Teacher, student, and class management modules</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> Multi-tenant isolation via Supabase Row-Level Security</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> Offline-first PWA support for low-connectivity classrooms</li>
                         <li><i data-lucide="check" width="16" height="16"></i> RBAC for admin, teacher, and staff roles</li>
-                        <li><i data-lucide="check" width="16" height="16"></i> Scalable multi-school database architecture</li>
-                        <li><i data-lucide="check" width="16" height="16"></i> Freemium monetization with ads and Pro tiers</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> Student records, attendance, scores, health, library, budget</li>
                     </ul>
                 </div>
 
@@ -1212,6 +1308,32 @@
                         <li><i data-lucide="check" width="16" height="16"></i> Optimized console I/O management</li>
                     </ul>
                 </div>
+
+                <!-- ToDoApp -->
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <span class="project-status status-completed">
+                            <i data-lucide="check-circle" width="12" height="12"></i> COMPLETED
+                        </span>
+                        <h3>ToDoApp</h3>
+                        <span class="project-link" style="cursor: default;">
+                            Full-Stack To-Do List App
+                        </span>
+                        <div class="project-stack">
+                            <span class="stack-tag">C#</span>
+                            <span class="stack-tag">.NET</span>
+                            <span class="stack-tag">Vue.js</span>
+                        </div>
+                    </div>
+                    <p class="project-desc">
+                        A full-stack to-do list application with authentication, built with a C# .NET backend and Vue.js frontend, live on GitHub Pages.
+                    </p>
+                    <ul class="project-features">
+                        <li><i data-lucide="check" width="16" height="16"></i> Full-stack to-do list with authentication</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> C# .NET backend with Vue.js frontend</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> Live on GitHub Pages</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -1230,7 +1352,7 @@
                 <div>
                     <h3>Bachelor of Information Technology</h3>
                     <p class="institution">National University of Battambang</p>
-                    <p class="details">Year 4 (Final Year) · Cambodia</p>
+                    <p class="details">Jan 2025 · Year 4 (Final Year) · Cambodia</p>
                 </div>
             </div>
         </div>
@@ -1252,8 +1374,43 @@
                 <div class="language-item fade-in">
                     <i data-lucide="globe" width="24" height="24" style="color: var(--accent); margin-bottom: 0.75rem;"></i>
                     <h4>English</h4>
-                    <p>Conversational / Technical Reading</p>
+                    <p>Intermediate / Technical Reading</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" style="background: var(--bg-elevated);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">References</span>
+                <h2>Who I've Worked With</h2>
+            </div>
+            <div class="references-grid">
+                <div class="reference-card fade-in">
+                    <i data-lucide="user" width="20" height="20" style="color: #fff; margin-bottom: 0.75rem; display: block;"></i>
+                    <h4>Horn Samath</h4>
+                    <p class="ref-title">Professor, National University of Battambang</p>
+                    <p style="color: var(--text-dim); font-size: 0.8125rem; font-family: 'DM Mono', monospace;">Academic Reference</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Beyond Code</span>
+                <h2>Hobbies & Interests</h2>
+            </div>
+            <div class="hobbies-content fade-in">
+                <p>
+                    I love technology and building things through software and web development.
+                    I'm always eager to learn new tech, work on personal coding projects, and share
+                    what I know with others.
+                </p>
             </div>
         </div>
     </section>
@@ -1272,10 +1429,24 @@
                     <i data-lucide="mail" width="18" height="18"></i>
                     Send Email
                 </a>
-                <a href="resume.pdf" class="btn btn-secondary">
+                <a href="assets/resume/CV.pdf" class="btn btn-secondary" download="Seth_Sochetra_CV.pdf">
                     <i data-lucide="download" width="18" height="18"></i>
-                    Download Resume
+                    Download CV
                 </a>
+            </div>
+            <div class="contact-details" style="margin-top: 2.5rem; color: var(--text-muted); font-size: 0.875rem; font-family: 'DM Mono', monospace;">
+                <p style="margin-bottom: 0.5rem;">
+                    <i data-lucide="phone" width="14" height="14" style="vertical-align: middle;"></i>
+                    069 271 887 &nbsp;·&nbsp; 086 505 215
+                </p>
+                <p style="margin-bottom: 0.5rem;">
+                    <i data-lucide="map-pin" width="14" height="14" style="vertical-align: middle;"></i>
+                    Battambang, Cambodia
+                </p>
+                <p>
+                    <i data-lucide="globe" width="14" height="14" style="vertical-align: middle;"></i>
+                    mrchetra007.github.io/portfolio
+                </p>
             </div>
             <div class="social-links">
                 <a href="https://github.com/mrchetra007" target="_blank" class="social-link" title="GitHub">
@@ -1290,7 +1461,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>Built with care by <strong>Seth Sochetra</strong> — a developer who ships real products. © 2026</p>
+        <p>Built with care by <strong>Seth Sochetra</strong> — a developer & educator who ships real products. © 2026</p>
     </footer>
 
     <script>
