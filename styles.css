@@ -430,6 +430,19 @@ section { padding: 6rem 2rem; }
 .project-features li:last-child { border-bottom: none; }
 .project-features li i { color: #fff; flex-shrink: 0; margin-top: 0.125rem; }
 
+/* PROJECT NOTE (demo caveats) */
+.project-note {
+    margin: 0 1.75rem 1.25rem;
+    padding: 0.75rem 1rem;
+    border: 1px dashed rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.02);
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    line-height: 1.7;
+    font-weight: 300;
+}
+.project-note strong { color: var(--text-muted); font-weight: 500; }
+
 /* EDUCATION */
 .education-card {
     border: 1px solid var(--border);
